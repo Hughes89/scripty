@@ -35,7 +35,17 @@ exports.getContentByType = (req, res) => {
   const type = req.params.type;
 };
 
-exports.createContent = (req, res) => {};
+exports.createContent = (req, res) => {
+  const lessonId = req.params.id;
+  const {order, type, text} = req.body;
+
+  new Content({order, type, text, lessonId})
+    .save((err, doc) => {
+      if (err) log.error(err);
+
+    });
+  res.status(201).send();
+};
 
 exports.updateContentById = (req, res) => {
   const id = req.params.id;
