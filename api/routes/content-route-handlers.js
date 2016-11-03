@@ -7,7 +7,17 @@ const log = require('../helpers/log');
 const send500 = require('../helpers/send500');
 const send404 = require('../helpers/send404');
 
-exports.getContent = (req, res) => {};
+exports.getContent = (req, res) => {
+  Content.find({}, function(err, docs) {
+    if (err) {
+      log.error(err);
+    }
+    return docs;
+  }).then(function(docs) {
+    res.status(200).send(docs);
+  })
+
+};
 
 exports.getContentById = (req, res) => {
   const id = req.params.id;
