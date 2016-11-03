@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Lesson = require('../data/models/lesson');
 const Content = require('../data/models/content');
-const ContentHandler = require('./content-route-handlers');
+const contentHandlers = require('./content-route-handlers');
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -87,7 +87,7 @@ exports.deleteLessonById = (req, res) => {
     return doc;
   });
 
-  ContentHandler.deleteAllContentsByLessonId(id);
+  contentHandlers.deleteAllContentsByLessonId(id);
   res.status(200).send("deleted lesson");
 };
 
