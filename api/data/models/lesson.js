@@ -18,8 +18,7 @@ const mongoose = require('mongoose');
  */
 
 const lessonSchema = mongoose.Schema({
-  title: String,
-  description: String,
+  title: String
 });
 
 const Lesson = mongoose.model('Lesson', lessonSchema);
