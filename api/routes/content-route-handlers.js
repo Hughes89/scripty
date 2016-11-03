@@ -35,24 +35,41 @@ exports.getContentByType = (req, res) => {
   const type = req.params.type;
 };
 
-exports.createContent = (req, res) => {};
+exports.createContent = (req, res) => {
+  const lessonId = req.params.id;
+  const {order, type, text} = req.body;
+
+  new Content({order, type, text, lessonId})
+    .save((err, doc) => {
+      if (err) log.error(err);
+
+    });
+  res.status(201).send();
+};
 
 exports.updateContentById = (req, res) => {
   const id = req.params.id;
-  var data = req.body;
+  const data = req.body;
 
   Content.findOneAndUpdate({_id: id}, data, {new: true}, function(err, doc) {
     if (err) {
-      log.error(err)
+      log.error(err);
     }
     return doc;
   });
 
-  res.status(201).send("updated a lesson");
+  res.status(201).send("updated content");
 };
 
 exports.deleteContentById = (req, res) => {
   const id = req.params.id;
+  Content.findOneAndRemove({"_id": id}, function(err, doc) {
+    if (err) {
+      log.error(err);
+    }
+    return doc;
+  });
+  res.status(200).send("deleted content!");
 };
 
 exports.deleteAllContentsByLessonId = (id) => {
@@ -61,7 +78,7 @@ exports.deleteAllContentsByLessonId = (id) => {
       log.error(err);
     }
     return doc;
-  })
+  });
 };
 
 

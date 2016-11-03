@@ -42,7 +42,7 @@ exports.getLessonAndContentsById = (req, res) => {
 
 // TODO(Mitch): Needs testing.
 exports.createLesson = (req, res) => {
-  const {title, description, content} = req.body;
+  const {title, content} = req.body;
 
   // Check intergrity of lesson content
   if (content.length === 0) {
@@ -50,7 +50,7 @@ exports.createLesson = (req, res) => {
     return;
   }
 
-  new Lesson({title, description})
+  new Lesson({title})
     .save((err, lesson) => {
       content.forEach((item, index) => {
         if (item.order === undefined) { item.order = index; }

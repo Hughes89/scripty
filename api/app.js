@@ -43,7 +43,7 @@ app.delete('/api/users/:id', userHandlers.deleteUserById);
 // app.get('/api/content/:type', contentHandlers.getContentByType);
 app.get('/api/content', contentHandlers.getContent);
 app.get('/api/content/:id', contentHandlers.getContentById);
-app.post('/api/content', contentHandlers.createContent);
+app.post('/api/content/:id', contentHandlers.createContent);
 app.put('/api/content/:id', contentHandlers.updateContentById);
 app.delete('/api/content/:id', contentHandlers.deleteContentById);
 
