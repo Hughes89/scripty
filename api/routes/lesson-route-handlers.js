@@ -54,7 +54,7 @@ exports.createLesson = (req, res) => {
     .save((err, lesson) => {
       content.forEach((item, index) => {
         if (item.order === undefined) { item.order = index; }
-
+        item.lessonId = ObjectId(lesson._id);
         new Content(item)
           .save(err => err ? log.error(err) : null);
       });
