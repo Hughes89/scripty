@@ -124,7 +124,7 @@ const createdLesson = new Lesson({
 //     if (err) {
 //       log.error(err);
 //     }
-  // });
+//   });
 
 }); // End of Lesson
 
