@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Lesson = require('../data/models/lesson');
 const Content = require('../data/models/content');
+const contentHandlers = require('./content-route-handlers');
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -53,7 +54,7 @@ exports.createLesson = (req, res) => {
     .save((err, lesson) => {
       content.forEach((item, index) => {
         if (item.order === undefined) { item.order = index; }
-
+        item.lessonId = ObjectId(lesson._id);
         new Content(item)
           .save(err => err ? log.error(err) : null);
       });
@@ -64,10 +65,30 @@ exports.createLesson = (req, res) => {
 
 exports.updateLessonById = (req, res) => {
   const id = req.params.id;
-  //TODO(Mitch): Fill me in!
+  var data = req.body;
+
+  Lesson.findOneAndUpdate({_id: id}, data, {new: true}, function(err, doc) {
+    if (err) {
+      log.error(err)
+    }
+    return doc;
+  });
+
+  res.status(201).send("updated a lesson");
 };
 
 exports.deleteLessonById = (req, res) => {
   const id = req.params.id;
-  //TODO(Mitch): Fill me in!
+
+  Lesson.findOneAndRemove({_id: id}, function(err, doc) {
+    if (err) {
+      log.error(err)
+    }
+    return doc;
+  });
+
+  contentHandlers.deleteAllContentsByLessonId(id);
+  res.status(200).send("deleted lesson");
 };
+
+

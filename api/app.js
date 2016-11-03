@@ -39,7 +39,9 @@ app.post('/api/users', userHandlers.createUser);
 app.put('/api/users/:id', userHandlers.updateUserById);
 app.delete('/api/users/:id', userHandlers.deleteUserById);
 
-app.get('/api/content/:type', contentHandlers.getContentByType);
+// below is commented out because they had two different GET routes for the same URL
+// app.get('/api/content/:type', contentHandlers.getContentByType);
+app.get('/api/content', contentHandlers.getContent);
 app.get('/api/content/:id', contentHandlers.getContentById);
 app.post('/api/content', contentHandlers.createContent);
 app.put('/api/content/:id', contentHandlers.updateContentById);
