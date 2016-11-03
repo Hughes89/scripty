@@ -64,7 +64,16 @@ exports.createLesson = (req, res) => {
 
 exports.updateLessonById = (req, res) => {
   const id = req.params.id;
-  //TODO(Mitch): Fill me in!
+  var data = req.body;
+
+  Lesson.findOneAndUpdate({_id: id}, data, {new: true}, function(err, doc) {
+    if (err) {
+      log.error(err)
+    }
+    return doc;
+  });
+
+  res.status(201).send("test");
 };
 
 exports.deleteLessonById = (req, res) => {
