@@ -11,6 +11,14 @@ exports.getContent = (req, res) => {};
 
 exports.getContentById = (req, res) => {
   const id = req.params.id;
+  Content.find({_id: id}, function(err, doc) {
+    if (err) {
+      log.error(err);
+    }
+    return doc;
+  }).then(function(doc) {
+    res.status(200).send(doc);
+  });
 };
 
 exports.getContentByType = (req, res) => {
@@ -38,7 +46,6 @@ exports.deleteContentById = (req, res) => {
 };
 
 exports.deleteAllContentsByLessonId = (id) => {
-  console.log('deleteAllContentsByLessonId fired')
   Content.remove({"lessonId": id}, function(err, doc) {
     if (err) {
       log.error(err);
