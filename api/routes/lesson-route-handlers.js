@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Lesson = require('../data/models/lesson');
 const Content = require('../data/models/content');
+const ContentHandler = require('./content-route-handlers');
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -73,10 +74,21 @@ exports.updateLessonById = (req, res) => {
     return doc;
   });
 
-  res.status(201).send("test");
+  res.status(201).send("updated a lesson");
 };
 
 exports.deleteLessonById = (req, res) => {
   const id = req.params.id;
-  //TODO(Mitch): Fill me in!
+
+  Lesson.findOneAndRemove({_id: id}, function(err, doc) {
+    if (err) {
+      log.error(err)
+    }
+    return doc;
+  });
+
+  ContentHandler.deleteAllContentsByLessonId(id);
+  res.status(200).send("deleted lesson");
 };
+
+
