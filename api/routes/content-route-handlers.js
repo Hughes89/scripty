@@ -49,16 +49,16 @@ exports.createContent = (req, res) => {
 
 exports.updateContentById = (req, res) => {
   const id = req.params.id;
-  var data = req.body;
+  const data = req.body;
 
   Content.findOneAndUpdate({_id: id}, data, {new: true}, function(err, doc) {
     if (err) {
-      log.error(err)
+      log.error(err);
     }
     return doc;
   });
 
-  res.status(201).send("updated a lesson");
+  res.status(201).send("updated content");
 };
 
 exports.deleteContentById = (req, res) => {
