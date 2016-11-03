@@ -63,6 +63,13 @@ exports.updateContentById = (req, res) => {
 
 exports.deleteContentById = (req, res) => {
   const id = req.params.id;
+  Content.findOneAndRemove({"_id": id}, function(err, doc) {
+    if (err) {
+      log.error(err);
+    }
+    return doc;
+  });
+  res.status(200).send("deleted content!");
 };
 
 exports.deleteAllContentsByLessonId = (id) => {
@@ -71,7 +78,7 @@ exports.deleteAllContentsByLessonId = (id) => {
       log.error(err);
     }
     return doc;
-  })
+  });
 };
 
 
