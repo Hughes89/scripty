@@ -26,13 +26,22 @@ exports.createUser = (req, res) => {
 
 exports.updateUserByUsername = (req, res) => {
   var username = req.params.username;
-  //TODO(Mitch): Fill me in!
+  var newUsername = req.body.username;
+  var statusCode = 201;
+  User.findOneAndUpdate({username: username}, {username: newUsername}, {new: true}, (err, doc) => {
+    if (err)  {
+      statusCode = 409;
+      log.error(err);
+      doc = "Username must be unique, try another";
+    }
+    res.status(statusCode).send(doc);
+  });
 };
 
 exports.deleteUserByUsername = (req, res) => {
   var username = req.params.username;
   User.findOneAndRemove({username: username}, (err, doc) => {
-    if (err) log.error(err);
+    if (err)  log.error(err);
     res.status(201).send(doc);
   });
 };
