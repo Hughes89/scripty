@@ -47,9 +47,11 @@ exports.createLesson = (req, res) => {
   // Check intergrity of lesson content
 
   new Lesson({title})
-    .save();
+    .save().then((lesson) => {
+      log.info(lesson);
+      res.status(201).json(lesson);
+    });
 
-  res.status(201).send();
 };
 
 exports.updateLessonById = (req, res) => {
