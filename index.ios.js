@@ -30,6 +30,8 @@ class scripty extends Component {
       return <Lesson navigator={navigator} {...passProps} />
     } else if (name === 'LessonComplete') {
       return <LessonComplete navigator={navigator} {...passProps} />
+    } else if (name === 'UserProfile') {
+      return <UserProfile navigator={navigator} {...pasProps} />
     }
   }
 

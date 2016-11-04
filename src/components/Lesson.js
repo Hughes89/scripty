@@ -4,6 +4,7 @@ import QuestionPrompt from './QuestionPrompt';
 import AnswerButton from './AnswerButton';
 import NextButton from './NextButton';
 import ProgressBar from './ProgressBar';
+import Footer from './footer'
 
 
 
@@ -134,6 +135,10 @@ class Lesson extends Component {
         { this.displayQuestionText() }
         { this.displayQuestionChoices() }
         { this.displayNextButton() }
+        <Footer  
+          lesson={false}
+          profile={false}
+          navigator={this.props.navigator} />
       </View>
     )
   }
