@@ -40,11 +40,9 @@ exports.createContent = (req, res) => {
   const {order, type, text} = req.body;
 
   new Content({order, type, text, lessonId})
-    .save((err, doc) => {
-      if (err) log.error(err);
-
-    });
-  res.status(201).send();
+    .save().then(function(content) {
+      res.status(201).send(content);
+    })
 };
 
 exports.updateContentById = (req, res) => {
@@ -55,10 +53,8 @@ exports.updateContentById = (req, res) => {
     if (err) {
       log.error(err);
     }
-    return doc;
+    res.status(201).send(doc);
   });
-
-  res.status(201).send("updated content");
 };
 
 exports.deleteContentById = (req, res) => {
