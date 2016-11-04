@@ -7,11 +7,23 @@ const log = require('../helpers/log');
 const send500 = require('../helpers/send500');
 const send404 = require('../helpers/send404');
 
-// TODO(Mitch): Needs testing.
-exports.getUserByUsername = (req, res) => {
+exports.checkAuthentication = (req, res) => {
   var username = req.params.username;
-  var {username, password} = req.body;
+  var {providedUsername, password} = req.body;
+  var authenticated = false;
+  var statusCode = 200;
 
+  User.findOne({username: username}).then(function(user) {
+    if (user.password === password) {
+      authenticated = true;
+    }
+    user.password = "http://i.imgur.com/zugsAYb.gif";
+    if (!authenticated) {
+      statusCode = 403;
+      user = "Incorrect username or password, try again";
+    }
+    res.status(statusCode).send(user);
+  });
 };
 
 exports.createUser = (req, res) => {

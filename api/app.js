@@ -33,7 +33,7 @@ app.post('/api/lessons', lessonHandlers.createLesson);
 app.put('/api/lessons/:id', lessonHandlers.updateLessonById);
 app.delete('/api/lessons/:id', lessonHandlers.deleteLessonById);
 
-app.get('/api/users/:username', userHandlers.getUserByUsername);
+app.post('/api/users/auth/:username', userHandlers.checkAuthentication);
 app.post('/api/users', userHandlers.createUser);
 app.post('/api/users/:username', userHandlers.addCompletedLesson);
 app.put('/api/users/:username', userHandlers.updateUserByUsername);
