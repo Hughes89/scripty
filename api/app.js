@@ -36,6 +36,7 @@ app.delete('/api/lessons/:id', lessonHandlers.deleteLessonById);
 app.get('/api/users', userHandlers.getUsers);
 app.get('/api/users/:id', userHandlers.getUserById);
 app.post('/api/users', userHandlers.createUser);
+app.post('/api/users/:id', userHandlers.addCompletedLesson);
 app.put('/api/users/:id', userHandlers.updateUserById);
 app.delete('/api/users/:id', userHandlers.deleteUserById);
 
