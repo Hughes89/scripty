@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, ScrollView } from 'react-native';
 import LessonTitleCard from './lessonTitleCard';
+import Footer from './footer'
 
 class LessonTitleCardList extends Component {
   
@@ -27,8 +28,9 @@ class LessonTitleCardList extends Component {
   }
 
   render() {
-    const { viewStyle } = styles;
+    const { viewStyle, footerStyle } = styles;
     return (
+      <View>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle} >
         { 
           this.state.lessonDetails.map(lesson => {
@@ -39,6 +41,8 @@ class LessonTitleCardList extends Component {
           })
         }
       </ScrollView>
+    <Footer lesson={true} navigator={this.props.navigator} />
+    </View>
     )
   }
 };
@@ -50,6 +54,12 @@ const styles = {
     paddingBottom: 20,
     backgroundColor: 'white',
     height: Dimensions.get("window").height,
+  },
+  footerStyle: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0
   }
 }
 
