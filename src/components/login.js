@@ -24,7 +24,7 @@ class Login extends Component {
     this.setState({modalVisible: visible});
   }
 
-  // When the user presses the button on the modal, 
+  // When the user presses the button on the modal,
   // dismiss it and navigate to the home route
   handleModalLoginButtonPress() {
     this.setModalVisible(false);
@@ -42,14 +42,14 @@ class Login extends Component {
   }
 
   render() {
-    const { title, viewStyle, cardStyle, textStyle, pinkCardStyle, 
+    const { title, viewStyle, cardStyle, textStyle, pinkCardStyle,
       whiteCardStyle, darkTextStyle, lightTextStyle, imageStyle, imageViewStyle,
       textInputStyle } = styles;
     return (
       <View style={viewStyle}>
-        <SignInForm visible={this.state.modalVisible} 
+        <SignInForm visible={this.state.modalVisible}
         handleModalLoginButtonPress={this.handleModalLoginButtonPress.bind(this)}
-        setUsername={this.setUsername.bind(this)} 
+        setUsername={this.setUsername.bind(this)}
         setPassword={this.setPassword.bind(this)} />
         <View style={imageViewStyle}>
           <Image

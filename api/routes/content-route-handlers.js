@@ -37,9 +37,9 @@ exports.getContentByType = (req, res) => {
 
 exports.createContent = (req, res) => {
   const lessonId = req.params.id;
-  const {order, type, text} = req.body;
+  const {order, type, text, choices, answer} = req.body;
 
-  new Content({order, type, text, lessonId})
+  new Content({order, type, text, choices, answer, lessonId})
     .save().then(function(content) {
       res.status(201).send(content);
     })
