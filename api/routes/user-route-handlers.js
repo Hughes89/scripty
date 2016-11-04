@@ -17,9 +17,14 @@ exports.getUserByUsername = (req, res) => {
 exports.createUser = (req, res) => {
   var data = req.body;
   var {username, password} = req.body;
+  var statusCode = 201;
   User.create({username, password}, (err, user) => {
-    if (err) log.error(err);
-    res.status(201).send(user);
+    if (err) {
+      log.error(err);
+      statusCode = 409;
+      user = "Username must be unique, try another";
+    }
+    res.status(statusCode).send(user);
   });
 
 };
