@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
  **/
 
 const userSchema = mongoose.Schema({
-  username: String,
+  username: {type: String, unique: true},
   password: String,
   lessonsCompleted: Array,
   totalScore: {type: Number, default: 0}
