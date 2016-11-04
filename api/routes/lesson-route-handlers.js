@@ -42,23 +42,12 @@ exports.getLessonAndContentsById = (req, res) => {
 
 // TODO(Mitch): Needs testing.
 exports.createLesson = (req, res) => {
-  const {title, content} = req.body;
+  const {title} = req.body;
 
   // Check intergrity of lesson content
-  if (content.length === 0) {
-    send500(res, 'Lesson submitted without content.');
-    return;
-  }
 
   new Lesson({title})
-    .save((err, lesson) => {
-      content.forEach((item, index) => {
-        if (item.order === undefined) { item.order = index; }
-        item.lessonId = ObjectId(lesson._id);
-        new Content(item)
-          .save(err => err ? log.error(err) : null);
-      });
-    });
+    .save();
 
   res.status(201).send();
 };
