@@ -33,12 +33,11 @@ app.post('/api/lessons', lessonHandlers.createLesson);
 app.put('/api/lessons/:id', lessonHandlers.updateLessonById);
 app.delete('/api/lessons/:id', lessonHandlers.deleteLessonById);
 
-app.get('/api/users', userHandlers.getUsers);
-app.get('/api/users/:id', userHandlers.getUserById);
+app.post('/api/users/auth/:username', userHandlers.checkAuthentication);
 app.post('/api/users', userHandlers.createUser);
-app.post('/api/users/:id', userHandlers.addCompletedLesson);
-app.put('/api/users/:id', userHandlers.updateUserById);
-app.delete('/api/users/:id', userHandlers.deleteUserById);
+app.post('/api/users/:username', userHandlers.addCompletedLesson);
+app.put('/api/users/:username', userHandlers.updateUserByUsername);
+app.delete('/api/users/:username', userHandlers.deleteUserByUsername);
 
 // below is commented out because they had two different GET routes for the same URL
 // app.get('/api/content/:type', contentHandlers.getContentByType);
