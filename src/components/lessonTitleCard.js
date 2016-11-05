@@ -5,7 +5,7 @@ import { Text, View, Dimensions, TouchableHighlight, ListView } from 'react-nati
 
 
 const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user }) => {
-  const { buttonStyle, viewStyle, textStyle, circleStyle } = styles;
+  const { buttonStyle, viewStyle, textStyle, circleStyle, greenCircle, yellowCircle, blueCircle } = styles;
 
   const navigate = (routeName, id) => {
     navigator.push({
@@ -18,10 +18,11 @@ const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user }) => {
     })
   };
 
+  circle = user.lessonsCompleted.some(lesson => lesson.lessonId === lessonId) ? {...circleStyle, ...greenCircle} : {...circleStyle, ...blueCircle}
   return (
     <TouchableHighlight onPress={navigate.bind(this, 'Lesson', lessonId, )} underlayColor={grey} style={buttonStyle}>
       <View style={viewStyle}>
-        <View style={circleStyle}></View>
+        <View style={circle}></View>
         <Text style={textStyle}>{lessonTitle}</Text>
       </View>
     </TouchableHighlight>
@@ -57,9 +58,18 @@ const styles = {
     borderRadius: 100,
     height: 30,
     width: 30,
-    backgroundColor: '#4DD8F9',
+    // backgroundColor: '#4DD8F9',
     marginLeft: 20,
     marginRight: 20,
+  },
+  greenCircle: {
+    backgroundColor: 'green'
+  },
+  blueCircle: {
+    backgroundColor: '#4DD8F9'
+  },
+  yellowCircle: {
+    backgroundColor: 'yellow'
   }
 }
 
