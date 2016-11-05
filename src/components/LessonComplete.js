@@ -24,7 +24,8 @@ const LessonComplete = ({ navigator, numberCorrect, numberIncorrect, user, lesso
       body: JSON.stringify({
         "lessonId": lessonId,
         "title": lessonTitle,
-        "score": numberCorrect
+        "score": numberCorrect,
+        "questionNumber": numberCorrect + numberIncorrect
       })
     })
       .then(response => response.json())
