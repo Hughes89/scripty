@@ -108,7 +108,7 @@ class Lesson extends Component {
         console.log(choice, this.state.pressedButton)
       }
 
-      return <AnswerButton possibleAnswer={choice} index={index}
+      return <AnswerButton key={index} possibleAnswer={choice} index={index}
       handleAnswerButtonClick={this.handleAnswerButtonClick.bind(this)}
       isCorrectAnswer={isCorrectAnswer} isPressedAnswer={isPressedAnswer} />
     })
