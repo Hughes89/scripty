@@ -7,7 +7,7 @@ class Footer extends Component {
   }
   
   navigate(routeName, userData) {
-    if (this.props.lesson && routeName === 'Home') {
+    if (this.props.lesson && routeName === 'Lesson') {
       return
     }
     if (this.props.profile && routeName === 'Profile') {
@@ -22,10 +22,11 @@ class Footer extends Component {
   }
 
   render() {
-    const {  footerStyle, lightTextStyleLeft, lightTextStyleRight } = styles;
+    const {  footerStyle, lightTextStyleLeft, lightTextStyleRight, lightTextStyleMiddle } = styles;
     return (
     <View style={footerStyle}>
-      <Text onPress={this.navigate.bind(this, 'Home', this.props.user)} style={lightTextStyleLeft}>Lessons</Text>
+      <Text onPress={this.navigate.bind(this, 'Lesson', this.props.user)} style={lightTextStyleLeft}>Lessons</Text>
+      <Text onPress={this.navigate.bind(this, 'Home')}  style={lightTextStyleMiddle}>Log Out</Text>
       <Text onPress={this.navigate.bind(this, 'Profile', this.props.user)} style={lightTextStyleRight}>Profile</Text>
     </View>
     )
@@ -50,7 +51,6 @@ const styles = {
     bottom: 0
   },
   lightTextStyleLeft: {
-    paddingRight: 150,
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
@@ -60,6 +60,13 @@ const styles = {
     fontSize: 20,
     fontWeight: 'bold',
   },
+  lightTextStyleMiddle: {
+    paddingRight: 40,
+    paddingLeft: 40,
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',   
+  }
 }
 
 export default Footer;

@@ -16,7 +16,7 @@ class LessonTitleCardList extends Component {
       <View>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle} >
       <Text style={profileText}>Username: {this.props.user.username}</Text>
-      <Text style={profileText}>Score: {this.props.user.score}</Text>
+      <Text style={profileText}>Score: {this.props.user.totalScore}</Text>
       <Text style={profileText}>Completed Lessons: </Text>
       {
         this.props.user.lessonsCompleted.map(lesson => {
