@@ -23,7 +23,7 @@ const LessonComplete = ({ navigator, numberCorrect, numberIncorrect, user, lesso
       },
       body: JSON.stringify({
         "lessonId": lessonId,
-        "lessonTitle": lessonTitle,
+        "title": lessonTitle,
         "score": numberCorrect
       })
     })
@@ -32,6 +32,7 @@ const LessonComplete = ({ navigator, numberCorrect, numberIncorrect, user, lesso
         user = response;
         navigate('LessonList');
       })
+    console.log(lessonTitle)
   }
 
   let total = numberCorrect + numberIncorrect;
