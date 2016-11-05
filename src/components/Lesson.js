@@ -20,6 +20,7 @@ class Lesson extends Component {
       numberIncorrect: 0,
     }
     this.getQuestions();
+    console.log(this.props)
   }
 
   // Fetch the questions from the API
@@ -41,6 +42,7 @@ class Lesson extends Component {
     this.props.navigator.push({
       name:routeName,
       passProps: {
+        user: this.props.user,
         numberCorrect: this.state.numberCorrect,
         numberIncorrect: this.state.numberIncorrect,
       }
@@ -136,6 +138,7 @@ class Lesson extends Component {
         { this.displayQuestionChoices() }
         { this.displayNextButton() }
         <Footer  
+          user={this.props.user}
           lesson={false}
           profile={false}
           navigator={this.props.navigator} />

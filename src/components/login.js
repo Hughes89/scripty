@@ -11,12 +11,22 @@ class Login extends Component {
       modalVisible: false,
       username: '',
       password: '',
+      user: {
+        username: 'mike',
+        score: 1,
+        lessonsCompleted: [{title:'one'}, {title:'two'}]
+      }
     };
   }
 
   // Navigation - Push to navigator to go to that specific route.
   navigate(routeName) {
-    this.props.navigator.push({name:routeName})
+    this.props.navigator.push({
+      name:routeName,
+      passProps: {
+      user: this.state.user
+      }
+    });
   }
 
   // Change the state to make the modal visible
