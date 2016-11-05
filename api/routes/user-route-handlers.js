@@ -68,6 +68,7 @@ exports.addCompletedLesson = (req, res) => {
   var lessonId = req.body.lessonId;
   var score = req.body.score;
   var title = req.body.title;
+  var questionNumber = req.body.questionNumber
   User.findOne({username: username}).then(function(user) {
     user.lessonsCompleted.forEach(function(lesson) {
       if (lesson.lessonId === lessonId) {
@@ -84,7 +85,7 @@ exports.addCompletedLesson = (req, res) => {
       }
     }
     if (!found) {
-      user.lessonsCompleted.push({score: score, lessonId: lessonId, title: title});
+      user.lessonsCompleted.push({score: score, lessonId: lessonId, title: title, questionNumber: questionNumber});
     }
 
     User.findOneAndUpdate({username: username}, {lessonsCompleted: user.lessonsCompleted}, function(err) {
