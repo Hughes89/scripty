@@ -27,26 +27,31 @@ class LessonTitleCardList extends Component {
     console.log(this.props);
     const { viewStyle, footerStyle, profileText, profileTitle, cardStyle, pinkCardStyle, lightTextStyle } = styles;
     return (
-      <View>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle} >
-        <Text style={profileTitle}>Username </Text><Text style={profileText}>{this.props.user.username}</Text>
-        <Text style={profileTitle}>Score </Text><Text style={profileText}>{this.calculate()}</Text>
-        <Text style={profileTitle}>Completed Lessons </Text>
-        {
-          this.props.user.lessonsCompleted.map((lesson, i) => {
-            return <Text key={i} style={profileText}>{lesson.title}</Text>
-          })
-        }
-        <TouchableHighlight onPress={this.navigate.bind(this, 'Home')} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
-            <Text style={lightTextStyle}>Log Out</Text>
-          </TouchableHighlight>
-        </ScrollView>
-      <Footer 
-        user={this.props.user}
-        lesson={false}
-        profile={true}
-        navigator={this.props.navigator} />
-    </View>
+      <View style={{flex: 1}}>
+        <View style={{flex: .9}}>
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle} >
+            <Text style={profileTitle}>Username </Text><Text style={profileText}>{this.props.user.username}</Text>
+            <Text style={profileTitle}>Score </Text><Text style={profileText}>{this.calculate()}</Text>
+            <Text style={profileTitle}>Completed Lessons </Text>
+            {
+              this.props.user.lessonsCompleted.map((lesson, i) => {
+                return <Text key={i} style={profileText}>{lesson.title}</Text>
+              })
+            }
+            <TouchableHighlight onPress={this.navigate.bind(this, 'Home')} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
+              <Text style={lightTextStyle}>Log Out</Text>
+            </TouchableHighlight>
+          </ScrollView>
+        </View>
+        <View style={{flex: .1}}>
+          <Footer 
+            user={this.props.user}
+            lesson={false}
+            profile={true}
+            navigator={this.props.navigator}
+          />
+        </View>
+      </View>
     )
   }
 };
@@ -55,6 +60,7 @@ class LessonTitleCardList extends Component {
 const coral = '#FA848A'
 const darkCoral = '#DE757A'
 const grey = '#FAFAFA'
+const {width, height} = Dimensions.get('window');
 
 const styles = {
   viewStyle: {
@@ -62,7 +68,6 @@ const styles = {
     paddingTop: 60,
     paddingBottom: 20,
     backgroundColor: 'white',
-    height: Dimensions.get("window").height,
   },
   profileText: {
     color: '#1c1c1c',
@@ -82,7 +87,6 @@ const styles = {
 
     height: 60,
     width: Dimensions.get("window").width - 40,
-    marginTop: 20,
     borderRadius: 5,
     position: 'relative',
 

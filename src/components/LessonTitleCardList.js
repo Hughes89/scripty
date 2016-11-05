@@ -30,24 +30,29 @@ class LessonTitleCardList extends Component {
   render() {
     const { viewStyle, footerStyle } = styles;
     return (
-      <View>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
-        { 
-          this.state.lessonDetails.map(lesson => {
-          return <LessonTitleCard lessonTitle={lesson.title} 
-            lessonId={lesson._id}
-            navigator={ this.props.navigator } 
-            key={lesson._id}
+      <View style={{flex: 1}}>
+        <View style={{flex: .9}}>
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
+            { 
+              this.state.lessonDetails.map(lesson => {
+              return <LessonTitleCard lessonTitle={lesson.title} 
+                lessonId={lesson._id}
+                navigator={ this.props.navigator } 
+                key={lesson._id}
+                user={this.props.user}
+                />
+              })
+            }
+          </ScrollView>
+        </View>
+        <View style={{flex: .1}}>
+          <Footer 
             user={this.props.user}
-             />
-          })
-        }
-      </ScrollView>
-    <Footer 
-      user={this.props.user}
-      lesson={true}
-      profile={false}
-      navigator={this.props.navigator} />
+            lesson={true}
+            profile={false}
+            navigator={this.props.navigator}
+          />
+        </View>
       </View>
     )
   }
@@ -59,7 +64,6 @@ const styles = {
     paddingTop: 60,
     paddingBottom: 20,
     backgroundColor: 'white',
-    height: Dimensions.get("window").height,
   },
   footerStyle: {
     position: 'absolute',
