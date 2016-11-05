@@ -22,7 +22,7 @@ const LessonComplete = ({ navigator, numberCorrect, numberIncorrect, user }) => 
       </Text>
       <Text style={subHead}> You got {numberCorrect} out of {total} correct! </Text>
 
-      <TouchableHighlight style={cardStyle} underlayColor={darkerBlue} onPress={navigate.bind(this, 'Home')}>
+      <TouchableHighlight style={cardStyle} underlayColor={darkerBlue} onPress={navigate.bind(this, 'LessonList')}>
         <Text style={textStyle} > Home </Text>
       </TouchableHighlight>
     </View>
