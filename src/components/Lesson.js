@@ -20,7 +20,7 @@ class Lesson extends Component {
       numberIncorrect: 0,
     }
     this.getQuestions();
-    console.log(this.props)
+    console.log("hello", this.props)
   }
 
   // Fetch the questions from the API
@@ -43,6 +43,8 @@ class Lesson extends Component {
       name:routeName,
       passProps: {
         user: this.props.user,
+        lessonId: this.props.id,
+        lessonTitle: this.props.lessonTitle,
         numberCorrect: this.state.numberCorrect,
         numberIncorrect: this.state.numberIncorrect,
       }
