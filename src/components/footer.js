@@ -16,19 +16,23 @@ class Footer extends Component {
   }
 
   renderProfileFooter() {
-    const {  lightTextStyle } = styles;
-    if(this.props.lesson) {
+    const {  lightTextStyle, pinkCardStyle, cardStyle } = styles;
+    if (this.props.lesson) {
       return (
-      <Text onPress={this.navigate.bind(this, 'Profile', this.props.user)} style={lightTextStyle}>Profile</Text>
+        <TouchableHighlight onPress={this.navigate.bind(this, 'Profile', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
+          <Text style={lightTextStyle}>Profile</Text>
+        </TouchableHighlight>
       )
     }
   }
 
   renderLessonFooter() {
-    const {  lightTextStyle} = styles;
-    if(this.props.profile) {
+    const {  lightTextStyle, pinkCardStyle, cardStyle } = styles;
+    if (this.props.profile) {
       return (
-      <Text onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={lightTextStyle}>Lessons</Text>
+        <TouchableHighlight onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
+          <Text style={lightTextStyle}>Lessons</Text>
+        </TouchableHighlight>
       )
     }
 
@@ -66,6 +70,19 @@ const styles = {
     color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
+  },
+  cardStyle: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 40,
+    width: Dimensions.get("window").width - 40,
+    borderRadius: 5,
+    position: 'relative',
+
+  },
+  pinkCardStyle: {
+    backgroundColor: coral,
   },
 }
 
