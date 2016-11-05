@@ -13,6 +13,11 @@ class SignInForm extends Component {
   }
 
   navigate(routeName, userData) {
+    console.log(this.props)
+    if (this.props.user === 'signUp') {
+      this.props.navigator.pop();
+      return;
+    }
     console.log(routeName)
     this.props.navigator.push({
       name: routeName,
@@ -36,7 +41,6 @@ class SignInForm extends Component {
   handleLogin() {
     var self = this;
     var user = null;
-    console.log(self.state.password)
     fetch('http://localhost:3011/api/users/auth/' + self.state.username, {
       method: 'POST',
       headers: {
@@ -106,7 +110,7 @@ class SignInForm extends Component {
             <Text style={lightTextStyle}>Sign In</Text>
           </TouchableHighlight>
           {this.renderError()}
-          <View><Text style={darkTextStyle} onPress={this.navigate.bind(this, 'SignUp')} >Not a member? Sign Up Here!</Text></View>
+          <View><Text style={darkTextStyle} onPress={this.navigate.bind(this, 'SignUp', 'signIn')} >Not a member? Sign Up Here!</Text></View>
         </View>
       </View>
     )
