@@ -13,6 +13,7 @@ class LessonTitleCardList extends Component {
     }
     // Get all of the lesson detail objects on component load
     this.getLessonDetails()
+    console.log(this.props);
   }
 
   // Get all of the lesson titles & ids
@@ -37,11 +38,17 @@ class LessonTitleCardList extends Component {
           return <LessonTitleCard lessonTitle={lesson.title} 
             lessonId={lesson._id}
             navigator={ this.props.navigator } 
-            key={lesson._id} />
+            key={lesson._id}
+            user={this.props.user}
+             />
           })
         }
       </ScrollView>
-    <Footer lesson={true} navigator={this.props.navigator} />
+    <Footer 
+      user={this.props.user}
+      lesson={true}
+      profile={false}
+      navigator={this.props.navigator} />
     </View>
     )
   }

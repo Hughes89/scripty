@@ -6,22 +6,27 @@ class Footer extends Component {
     super(props);
   }
   
-  navigate(routeName) {
+  navigate(routeName, userData) {
     if (this.props.lesson && routeName === 'Home') {
       return
     }
     if (this.props.profile && routeName === 'Profile') {
       return
     }
-      this.props.navigator.push({name:routeName});
+      this.props.navigator.push({
+        name:routeName,
+        passProps: {
+        user: userData
+        }
+      });
   }
 
   render() {
     const {  footerStyle, lightTextStyleLeft, lightTextStyleRight } = styles;
     return (
     <View style={footerStyle}>
-      <Text onPress={this.navigate.bind(this, 'Home')} style={lightTextStyleLeft}>Lessons</Text>
-      <Text onPress={this.navigate.bind(this, 'Profile')} style={lightTextStyleRight}>Profile</Text>
+      <Text onPress={this.navigate.bind(this, 'Home', this.props.user)} style={lightTextStyleLeft}>Lessons</Text>
+      <Text onPress={this.navigate.bind(this, 'Profile', this.props.user)} style={lightTextStyleRight}>Profile</Text>
     </View>
     )
   }

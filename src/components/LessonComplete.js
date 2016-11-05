@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, TouchableHighlight } from 'react-native';
 
-const LessonComplete = ({ navigator, numberCorrect, numberIncorrect }) => {
+const LessonComplete = ({ navigator, numberCorrect, numberIncorrect, user }) => {
   const { viewStyle, cardStyle, textStyle, bigTextStyle, greenText, redText, subHead } = styles;
 
   const navigate = (routeName) => {
-    navigator.push({name:routeName});
+    navigator.push({
+      name:routeName,
+      passProps: {
+      user: user
+      }
+    });
   };
 
   let total = numberCorrect + numberIncorrect;

@@ -15,6 +15,7 @@ import LessonTitleCardList from './src/components/LessonTitleCardList';
 import Login from './src/components/login';
 import Lesson from './src/components/Lesson';
 import LessonComplete from './src/components/LessonComplete';
+import Profile from './src/components/profile';
 
 
 
@@ -23,15 +24,15 @@ class scripty extends Component {
   renderScene(route, navigator) {
     const { name, passProps } = route;
     if (name === 'Home') {
-      return <LessonTitleCardList navigator={navigator} />
+      return <LessonTitleCardList navigator={navigator} {...passProps} />
     } else if (name === 'Login') {
       return <Login navigator={navigator} />
     } else if (name === 'Lesson') {
       return <Lesson navigator={navigator} {...passProps} />
     } else if (name === 'LessonComplete') {
       return <LessonComplete navigator={navigator} {...passProps} />
-    } else if (name === 'UserProfile') {
-      return <UserProfile navigator={navigator} {...pasProps} />
+    } else if (name === 'Profile') {
+      return <Profile navigator={navigator} {...passProps} />
     }
   }
 
