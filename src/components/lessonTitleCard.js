@@ -6,12 +6,13 @@ import { Text, View, Dimensions, TouchableHighlight, ListView } from 'react-nati
 
 const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user }) => {
   const { buttonStyle, viewStyle, textStyle, circleStyle } = styles;
-  
+
   const navigate = (routeName, id) => {
     navigator.push({
       name:routeName,
       passProps: {
         id: id,
+        lessonTitle: lessonTitle,
         user: user
       }
     })
