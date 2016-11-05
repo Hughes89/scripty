@@ -4,7 +4,7 @@ import LessonTitleCard from './lessonTitleCard';
 import Footer from './footer'
 
 class LessonTitleCardList extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -33,11 +33,11 @@ class LessonTitleCardList extends Component {
       <View style={{flex: 1}}>
         <View style={{flex: .9}}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
-            { 
+            {
               this.state.lessonDetails.map(lesson => {
-              return <LessonTitleCard lessonTitle={lesson.title} 
+              return <LessonTitleCard lessonTitle={lesson.title}
                 lessonId={lesson._id}
-                navigator={ this.props.navigator } 
+                navigator={ this.props.navigator }
                 key={lesson._id}
                 user={this.props.user}
                 />
@@ -46,7 +46,7 @@ class LessonTitleCardList extends Component {
           </ScrollView>
         </View>
         <View style={{flex: .1}}>
-          <Footer 
+          <Footer
             user={this.props.user}
             lesson={true}
             profile={false}

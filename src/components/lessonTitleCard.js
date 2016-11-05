@@ -5,7 +5,7 @@ import { Text, View, Dimensions, TouchableHighlight, ListView } from 'react-nati
 
 
 const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user }) => {
-  const { buttonStyle, viewStyle, textStyle, circleStyle } = styles;
+  const { buttonStyle, viewStyle, textStyle, circleStyle, greenCircle, yellowCircle, blueCircle, percentageStyle, hide } = styles;
 
   const navigate = (routeName, id) => {
     navigator.push({
@@ -18,10 +18,33 @@ const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user }) => {
     })
   };
 
+  var lessonInfo;
+  const completed = user.lessonsCompleted.some(lesson => {
+    if(lesson.lessonId === lessonId){
+      lessonInfo = lesson;
+      return true;
+    }
+    return false;
+  })
+
+  if(completed){
+    var totalScore = ""
+    console.log(Number(lessonInfo.questionNumber))
+    if(Number(lessonInfo.score)/Number(lessonInfo.questionNumber) === 1 || lessonInfo.questionNumber == 0){
+      circle = {...circleStyle, ...greenCircle}
+    } else {
+      circle = {...circleStyle, ...yellowCircle}
+      totalScore = Math.floor((Number(lessonInfo.score)/Number(lessonInfo.questionNumber))*100) + "%"
+    }
+  } else {
+    circle = {...circleStyle, ...blueCircle}
+
+  }
+
   return (
     <TouchableHighlight onPress={navigate.bind(this, 'Lesson', lessonId, )} underlayColor={grey} style={buttonStyle}>
       <View style={viewStyle}>
-        <View style={circleStyle}></View>
+        <View style={circle}><Text style={percentageStyle}>{totalScore}</Text></View>
         <Text style={textStyle}>{lessonTitle}</Text>
       </View>
     </TouchableHighlight>
@@ -54,12 +77,27 @@ const styles = {
     fontSize: 17,
   },
   circleStyle: {
-    borderRadius: 100,
+    borderRadius: 30,
     height: 30,
     width: 30,
-    backgroundColor: '#4DD8F9',
     marginLeft: 20,
     marginRight: 20,
+  },
+  greenCircle: {
+    backgroundColor: 'green'
+  },
+  blueCircle: {
+    backgroundColor: '#4DD8F9'
+  },
+  yellowCircle: {
+    backgroundColor: 'yellow'
+  },
+  percentageStyle: {
+    backgroundColor: 'transparent',
+    color: 'black',
+    fontSize: 11,
+    marginTop: 9,
+    textAlign: 'center'
   }
 }
 
