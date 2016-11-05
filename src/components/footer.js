@@ -25,7 +25,7 @@ class Footer extends Component {
     const {  footerStyle, lightTextStyleLeft, lightTextStyleRight, lightTextStyleMiddle } = styles;
     return (
     <View style={footerStyle}>
-      <Text onPress={this.navigate.bind(this, 'Lesson', this.props.user)} style={lightTextStyleLeft}>Lessons</Text>
+      <Text onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={lightTextStyleLeft}>Lessons</Text>
       <Text onPress={this.navigate.bind(this, 'Home')}  style={lightTextStyleMiddle}>Log Out</Text>
       <Text onPress={this.navigate.bind(this, 'Profile', this.props.user)} style={lightTextStyleRight}>Profile</Text>
     </View>
