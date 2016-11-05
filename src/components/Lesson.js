@@ -50,7 +50,7 @@ class Lesson extends Component {
   }
 
   // When any choice is clicked, change the state of this parent component to reflect that action
-  handleAnswerButtonClick(buttonText) {
+  handleAnswerButtonClick(buttonText, index) {
     this.setState({ clicked: true });
     this.setState({ pressedButton: buttonText });
 
@@ -58,9 +58,9 @@ class Lesson extends Component {
     // State looks like it changes in here, but is not reflected in render or navigate
     let question = this.state.questions[this.state.currentQuestion];
 
-    if (buttonText === question.answer) {
+    if (index == question.answer && this.state.clicked === false) {
       this.setState({ numberCorrect: this.state.numberCorrect + 1})
-    } else {
+    } else if (this.state.clicked === false){
       this.setState({ numberIncorrect: this.state.numberIncorrect + 1})
     }
   }
@@ -93,7 +93,7 @@ class Lesson extends Component {
     let question = this.state.questions[this.state.currentQuestion];
 
     if (question && question.choices)
-    return question.choices.map(choice => {
+    return question.choices.map((choice, index) => {
       let isCorrectAnswer;
       let isPressedAnswer;
 
@@ -101,11 +101,12 @@ class Lesson extends Component {
       // The correct one, the one they pressed, or neither.
       // For styling purposes inside of the AnswerButton component.
       if (this.state.clicked) {
-        isCorrectAnswer = choice === question.answer;
+        isCorrectAnswer = index == question.answer;
         isPressedAnswer = choice === this.state.pressedButton;
+        console.log(choice, this.state.pressedButton)
       }
 
-      return <AnswerButton possibleAnswer={choice} key={choice}
+      return <AnswerButton possibleAnswer={choice} index={index}
       handleAnswerButtonClick={this.handleAnswerButtonClick.bind(this)}
       isCorrectAnswer={isCorrectAnswer} isPressedAnswer={isPressedAnswer} />
     })
@@ -137,7 +138,7 @@ class Lesson extends Component {
         { this.displayQuestionText() }
         { this.displayQuestionChoices() }
         { this.displayNextButton() }
-        <Footer  
+        <Footer
           user={this.props.user}
           lesson={false}
           profile={false}
