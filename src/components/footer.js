@@ -7,12 +7,6 @@ class Footer extends Component {
   }
   
   navigate(routeName, userData) {
-    if (this.props.lesson && routeName === 'Lesson') {
-      return
-    }
-    if (this.props.profile && routeName === 'Profile') {
-      return
-    }
       this.props.navigator.push({
         name:routeName,
         passProps: {
@@ -21,13 +15,35 @@ class Footer extends Component {
       });
   }
 
+  renderProfileFooter() {
+    const {  lightTextStyle, pinkCardStyle, cardStyle } = styles;
+    if (this.props.lesson) {
+      return (
+        <TouchableHighlight onPress={this.navigate.bind(this, 'Profile', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
+          <Text style={lightTextStyle}>Profile</Text>
+        </TouchableHighlight>
+      )
+    }
+  }
+
+  renderLessonFooter() {
+    const {  lightTextStyle, pinkCardStyle, cardStyle } = styles;
+    if (this.props.profile) {
+      return (
+        <TouchableHighlight onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
+          <Text style={lightTextStyle}>Lessons</Text>
+        </TouchableHighlight>
+      )
+    }
+
+  }
+
   render() {
-    const {  footerStyle, lightTextStyleLeft, lightTextStyleRight, lightTextStyleMiddle } = styles;
+    const {  footerStyle, lightTextStyle } = styles;
     return (
     <View style={footerStyle}>
-      <Text onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={lightTextStyleLeft}>Lessons</Text>
-      <Text onPress={this.navigate.bind(this, 'Home')}  style={lightTextStyleMiddle}>Log Out</Text>
-      <Text onPress={this.navigate.bind(this, 'Profile', this.props.user)} style={lightTextStyleRight}>Profile</Text>
+    {this.renderLessonFooter()}
+    {this.renderProfileFooter()}
     </View>
     )
   }
@@ -50,23 +66,24 @@ const styles = {
     right: 0,
     bottom: 0
   },
-  lightTextStyleLeft: {
+  lightTextStyle: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
   },
-  lightTextStyleRight: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
+  cardStyle: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 40,
+    width: Dimensions.get("window").width - 40,
+    borderRadius: 5,
+    position: 'relative',
+
   },
-  lightTextStyleMiddle: {
-    paddingRight: 40,
-    paddingLeft: 40,
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',   
-  }
+  pinkCardStyle: {
+    backgroundColor: coral,
+  },
 }
 
 export default Footer;

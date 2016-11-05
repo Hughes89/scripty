@@ -54,7 +54,7 @@ class SignUpForm extends Component {
       .then(response => response.json())
       .then(response => {
           console.log(response)
-          self.navigate('Lesson', response);
+          self.navigate('LessonList', response);
       })
       .catch(err => {
         this.setState({
