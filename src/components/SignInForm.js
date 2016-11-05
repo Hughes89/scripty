@@ -51,7 +51,7 @@ class SignInForm extends Component {
       .then(response => response.json())
       .then(response => {
           console.log(response)
-          self.navigate('Lesson', response);
+          self.navigate('LessonList', response);
       })
       .catch(err => {
         this.setState({
@@ -81,7 +81,7 @@ class SignInForm extends Component {
               style={imageStyle}
             />
           </View>
-          <Text style={darkTextStyle}>Log In/Sign Up</Text>
+          <Text style={darkTextStyle}>Log In</Text>
           <View>
             <TextInput 
               style={textInputStyle}

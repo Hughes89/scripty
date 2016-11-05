@@ -25,7 +25,7 @@ class scripty extends Component {
 
   renderScene(route, navigator) {
     const { name, passProps } = route;
-    if (name === 'Lesson') {
+    if (name === 'LessonList') {
       return <LessonTitleCardList navigator={navigator} {...passProps} />
     } else if (name === 'Home') {
       return <Login navigator={navigator} />
