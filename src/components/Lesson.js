@@ -138,11 +138,6 @@ class Lesson extends Component {
         { this.displayQuestionText() }
         { this.displayQuestionChoices() }
         { this.displayNextButton() }
-        <Footer
-          user={this.props.user}
-          lesson={false}
-          profile={false}
-          navigator={this.props.navigator} />
       </View>
     )
   }

@@ -13,7 +13,6 @@ class LessonTitleCardList extends Component {
     }
     // Get all of the lesson detail objects on component load
     this.getLessonDetails()
-    console.log(this.props);
   }
 
   // Get all of the lesson titles & ids
@@ -32,7 +31,7 @@ class LessonTitleCardList extends Component {
     const { viewStyle, footerStyle } = styles;
     return (
       <View>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle} >
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
         { 
           this.state.lessonDetails.map(lesson => {
           return <LessonTitleCard lessonTitle={lesson.title} 
@@ -49,7 +48,7 @@ class LessonTitleCardList extends Component {
       lesson={true}
       profile={false}
       navigator={this.props.navigator} />
-    </View>
+      </View>
     )
   }
 };

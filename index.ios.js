@@ -28,7 +28,7 @@ class scripty extends Component {
     if (name === 'LessonList') {
       return <LessonTitleCardList navigator={navigator} {...passProps} />
     } else if (name === 'Home') {
-      return <Login navigator={navigator} />
+      return <Login navigator={navigator} {...passProps} />
     } else if (name === 'Lesson') {
       return <Lesson navigator={navigator} {...passProps} />
     } else if (name === 'LessonComplete') {
