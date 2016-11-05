@@ -13,6 +13,11 @@ class SignUpForm extends Component {
   }
 
   navigate(routeName, userData) {
+    console.log(this.props)
+    if (this.props.user === 'signIn') {
+      this.props.navigator.pop();
+      return
+    }
     console.log(routeName)
     this.props.navigator.push({
       name: routeName,
@@ -35,7 +40,6 @@ class SignUpForm extends Component {
 
   handleSignUp() {
     var self = this;
-    console.log(self.state.password)
     fetch('http://localhost:3011/api/users', {
       method: 'POST',
       headers: {
@@ -105,7 +109,7 @@ class SignUpForm extends Component {
             <Text style={lightTextStyle}>Sign Up</Text>
           </TouchableHighlight>
           {this.renderError()}
-          <View><Text style={darkTextStyle} onPress={this.navigate.bind(this, 'SignIn')} >Already a member? Sign In Here!</Text></View>
+          <View><Text style={darkTextStyle} onPress={this.navigate.bind(this, 'SignIn', 'signUp')} >Already a member? Sign In Here!</Text></View>
         </View>
       </View>
     )
