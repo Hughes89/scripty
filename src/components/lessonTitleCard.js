@@ -77,26 +77,26 @@ const styles = {
     fontSize: 17,
   },
   circleStyle: {
-    borderRadius: 30,
-    height: 30,
-    width: 30,
+    borderRadius: 40,
+    height: 35,
+    width: 35,
     marginLeft: 20,
     marginRight: 20,
   },
   greenCircle: {
-    backgroundColor: 'green'
+    backgroundColor: '#7ADB6F'
   },
   blueCircle: {
     backgroundColor: '#4DD8F9'
   },
   yellowCircle: {
-    backgroundColor: 'yellow'
+    backgroundColor: '#FCF68A'
   },
   percentageStyle: {
     backgroundColor: 'transparent',
-    color: 'black',
-    fontSize: 11,
-    marginTop: 9,
+    color: 'grey',
+    fontSize: 13,
+    marginTop: 10,
     textAlign: 'center'
   }
 }
