@@ -26,15 +26,35 @@ class scripty extends Component {
   renderScene(route, navigator) {
     const { name, passProps } = route;
     if (name === 'LessonList') {
-      return <LessonTitleCardList navigator={navigator} {...passProps} />
+      return (
+        <View style={{flex: 1}}>
+          <LessonTitleCardList navigator={navigator} {...passProps} />
+          <Header navigator={navigator} name={name}/>
+        </View>
+      )
     } else if (name === 'Home') {
       return <Login navigator={navigator} {...passProps} />
     } else if (name === 'Lesson') {
-      return <Lesson navigator={navigator} {...passProps} />
+      return (
+        <View style={{flex: 1}}>
+          <Lesson navigator={navigator} {...passProps} />
+          <Header navigator={navigator} name={name}/>
+        </View>
+      )
     } else if (name === 'LessonComplete') {
-      return <LessonComplete navigator={navigator} {...passProps} />
+      return (
+        <View style={{flex: 1}}>
+          <LessonComplete navigator={navigator} {...passProps} />
+          <Header navigator={navigator} name={name}/>
+        </View>
+      )
     } else if (name === 'Profile') {
-      return <Profile navigator={navigator} {...passProps} />
+      return (
+        <View style={{flex: 1}}>
+          <Profile navigator={navigator} {...passProps} />
+          <Header navigator={navigator} name={name}/>
+        </View>
+      )
     } else if (name === 'SignUp') {
       return <SignUpForm navigator={navigator} {...passProps} />
     } else if (name === 'LogIn') {
@@ -46,7 +66,6 @@ class scripty extends Component {
     return (
       <Navigator
       style={{ backgroundColor: 'white', flex: 1 }}
-      navigationBar={<Header />}
       initialRoute={{ name:'Home' }}
       renderScene={this.renderScene}
       />

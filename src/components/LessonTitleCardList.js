@@ -31,7 +31,7 @@ class LessonTitleCardList extends Component {
     const { viewStyle, footerStyle } = styles;
     return (
       <View style={{flex: 1}}>
-        <View style={{flex: .9}}>
+        <View style={{flex: 9}}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
             {
               this.state.lessonDetails.map(lesson => {
@@ -45,7 +45,7 @@ class LessonTitleCardList extends Component {
             }
           </ScrollView>
         </View>
-        <View style={{flex: .1}}>
+        <View style={{flex: 1}}>
           <Footer
             user={this.props.user}
             lesson={true}
