@@ -17,16 +17,13 @@ exports.checkAuthentication = (req, res) => {
 
   User.findOne({username: username})
   .then(function(user) {
-    console.log('password to check: ', password);
-
     hashingHelpers.comparePassword(user.password, password)
     .then(hashesMatch => {
       if (hashesMatch) {
         authenticated = true;
       }
-
+      //hide hash with an easter egg
       user.password = "http://i.imgur.com/zugsAYb.gif";
-
       if (!authenticated) {
         statusCode = 403;
         user = "Incorrect username or password, try again";
