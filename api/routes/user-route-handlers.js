@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../data/models/user');
+const hashingHelpers = require('../helpers/hashingHelpers');
+
 
 const ObjId = mongoose.Types.ObjectId;
 
@@ -30,15 +32,18 @@ exports.createUser = (req, res) => {
   var data = req.body;
   var {username, password} = req.body;
   var statusCode = 201;
-  User.create({username, password}, (err, user) => {
-    if (err) {
-      log.error(err);
-      statusCode = 409;
-      user = "Username must be unique, try another";
-    }
-    res.status(statusCode).send(user);
-  });
 
+  password = hashingHelpers.hashPassword(password)
+  .then((password) => {
+    User.create({username, password}, (err, user) => {
+      if (err) {
+        log.error(err);
+        statusCode = 409;
+        user = "Username must be unique, try another";
+      }
+      res.status(statusCode).send(user);
+    });
+  });
 };
 
 exports.updateUserByUsername = (req, res) => {
