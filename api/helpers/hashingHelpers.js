@@ -17,7 +17,6 @@ exports.hashPassword = function (password, model) {
 };
 
 exports.comparePassword = (hash, userGivenPassword) => {
-  console.log('comparing password');
   return new Promise(function(resolve, reject){
     bcrypt.compare(userGivenPassword, hash, function(err, result){
       if(err) return reject(err);

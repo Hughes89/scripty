@@ -15,16 +15,24 @@ exports.checkAuthentication = (req, res) => {
   var authenticated = false;
   var statusCode = 200;
 
-  User.findOne({username: username}).then(function(user) {
-    if (user.password === password) {
-      authenticated = true;
-    }
-    user.password = "http://i.imgur.com/zugsAYb.gif";
-    if (!authenticated) {
-      statusCode = 403;
-      user = "Incorrect username or password, try again";
-    }
-    res.status(statusCode).send(user);
+  User.findOne({username: username})
+  .then(function(user) {
+    console.log('password to check: ', password);
+
+    hashingHelpers.comparePassword(user.password, password)
+    .then(hashesMatch => {
+      if (hashesMatch) {
+        authenticated = true;
+      }
+
+      user.password = "http://i.imgur.com/zugsAYb.gif";
+
+      if (!authenticated) {
+        statusCode = 403;
+        user = "Incorrect username or password, try again";
+      }
+      res.status(statusCode).send(user);
+    });
   });
 };
 
