@@ -20,6 +20,7 @@ import SignUpForm from './src/components/SignUpForm';
 import SignInForm from './src/components/SignInForm';
 import LessonDetail from './src/components/lessonDetail';
 import LeaderboardList from './src/components/LeaderboardList';
+import Languages from './src/components/languages'
 
 
 
@@ -36,7 +37,14 @@ class scripty extends Component {
       )
     } else if (name === 'Home') {
       return <Login navigator={navigator} {...passProps} />
-    } else if (name === 'Lesson') {
+    } else if(name === 'Languages'){
+      return (
+        <View style={{flex: 1}}>
+          <Languages navigator={navigator} {...passProps} />
+          <Header navigator={navigator} name={name}/>
+        </View>
+      )
+    }else if (name === 'Lesson') {
       return (
         <View style={{flex: 1}}>
           <Lesson navigator={navigator} {...passProps} />
