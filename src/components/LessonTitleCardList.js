@@ -13,7 +13,6 @@ class LessonTitleCardList extends Component {
     }
     // Get all of the lesson detail objects on component load
     this.getLessonDetails()
-    console.log('work',this.props)
   }
 
   // Get all of the lesson titles & ids

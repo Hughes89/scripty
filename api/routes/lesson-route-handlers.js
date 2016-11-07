@@ -46,7 +46,7 @@ exports.createLesson = (req, res) => {
 
   // Check intergrity of lesson content
 
-  new Lesson({title})
+  new Lesson({title, description, type})
     .save().then((lesson) => {
       log.info(lesson);
       res.status(201).json(lesson);

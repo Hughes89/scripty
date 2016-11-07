@@ -5,7 +5,7 @@ import { Text, View, Dimensions, TouchableHighlight, ScrollView } from 'react-na
 
 
 const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
-  const { buttonStyle, viewStyle, textStyle, circleStyle, greenCircle, yellowCircle, blueCircle, percentageStyle, hide } = styles;
+  const { viewStyle, lightTextStyle, cardStyle } = styles;
 
   const navigate = (routeName) => {
     navigator.push({
@@ -18,7 +18,6 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
     })
   };
 
-  console.log('please', lessonId)
 
   var lessonInfo;
   const completed = user.lessonsCompleted.some(lesson => {
@@ -29,80 +28,52 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
     return false;
   })
 
-  if(completed){
-    var totalScore = ""
-    console.log(Number(lessonInfo.questionNumber))
-    if(Number(lessonInfo.score)/Number(lessonInfo.questionNumber) === 1 || lessonInfo.questionNumber == 0){
-      circle = {...circleStyle, ...greenCircle}
-    } else {
-      circle = {...circleStyle, ...yellowCircle}
-      totalScore = Math.floor((Number(lessonInfo.score)/Number(lessonInfo.questionNumber))*100) + "%"
-    }
-  } else {
-    circle = {...circleStyle, ...blueCircle}
+  console.log(lesson)
 
-  }
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={viewStyle}>
       <Text>{lessonTitle}</Text>
       <Text>Language: {lesson.type}</Text>
       <Text>{lesson.description}</Text>
-      <TouchableHighlight onPress={navigate.bind(this, 'Lesson')} underlayColor={grey} style={buttonStyle}>
-          <Text style={textStyle}>Start Lesson</Text>
+      <TouchableHighlight style={cardStyle} onPress={navigate.bind(this, 'Lesson')} underlayColor={grey}>
+          <Text style={lightTextStyle}>Start Lesson</Text>
       </TouchableHighlight>
     </ScrollView>
   )
 };
 
 
+const coral = '#FA848A'
+const darkCoral = '#DE757A'
 const grey = '#FAFAFA'
+const {width, height} = Dimensions.get('window');
 
 const styles = {
-  buttonStyle: {
-    backgroundColor: 'white',
-
-    alignItems: 'center',
-    flexDirection: 'row',
-
-    height: 75,
-    width: Dimensions.get("window").width - 20,
-    marginTop: 0,
-    borderColor: '#ecf0f1',
-    borderBottomWidth: 0.5,
-  },
   viewStyle: {
     alignItems: 'center',
+    paddingTop: 60,
+    paddingBottom: 20,
+    backgroundColor: 'white',
+  },
+  cardStyle: {
+    backgroundColor: coral,
+
+    alignItems: 'center',
     flexDirection: 'row',
-    height: 120,
+    justifyContent: 'center',
+
+    height: 60,
+    width: Dimensions.get("window").width - 40,
+    marginTop: 20,
+
+    borderRadius: 5,
   },
-  textStyle: {
-    color: '#1c1c1c',
-    fontSize: 17,
+  lightTextStyle: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
-  circleStyle: {
-    borderRadius: 40,
-    height: 35,
-    width: 35,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  greenCircle: {
-    backgroundColor: '#7ADB6F'
-  },
-  blueCircle: {
-    backgroundColor: '#4DD8F9'
-  },
-  yellowCircle: {
-    backgroundColor: '#FCF68A'
-  },
-  percentageStyle: {
-    backgroundColor: 'transparent',
-    color: 'grey',
-    fontSize: 13,
-    marginTop: 10,
-    textAlign: 'center'
-  }
 }
 
 

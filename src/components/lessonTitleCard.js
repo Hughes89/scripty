@@ -18,7 +18,6 @@ const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
       }
     })
   };
-  console.log('why?', lessonId)
 
   var lessonInfo;
   const completed = user.lessonsCompleted.some(lesson => {
