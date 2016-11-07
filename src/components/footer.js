@@ -54,13 +54,13 @@ class Footer extends Component {
     const {  lightTextStyle, pinkCardStyle, whiteCardStyle, cardStyle, darkTextStyle } = styles;
     if (!this.props.leaderBoard) {
       return (
-        <TouchableHighlight onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
+        <TouchableHighlight onPress={this.navigate.bind(this, 'Leaderboard', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
           <Text style={lightTextStyle}>Leaderboard</Text>
         </TouchableHighlight>
       )
     } else {
       return (
-        <TouchableHighlight onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={{...cardStyle, ...whiteCardStyle}} underlayColor={darkCoral} >
+        <TouchableHighlight onPress={this.navigate.bind(this, 'Leaderboard', this.props.user)} style={{...cardStyle, ...whiteCardStyle}} underlayColor={darkCoral} >
           <Text style={darkTextStyle}>Leaderboard</Text>
         </TouchableHighlight>
       )

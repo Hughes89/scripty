@@ -8,48 +8,51 @@ class LeaderBoardList extends Component {
     super(props);
 
     this.state = {
-      lessonDetails: []
+      leaderboardList: []
     }
     // Get all of the lesson detail objects on component load
-    this.getLessonDetails()
+    this.getLeaderBoard();
   }
 
   // Get all of the lesson titles & ids
   getLeaderBoard() {
-    const url = 'http://localhost:3011/api/lessons'
+    const url = 'http://localhost:3011/api/users'
     fetch(url)
     .then(data => {
       return data.json()
     })
     .then(data => {
-      this.setState({'lessonDetails': data})
+      console.log(data)
+      this.setState({'leaderboardList': data})
     })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   render() {
-    const { viewStyle, footerStyle } = styles;
+    const { viewStyle, profileText, profileTitle, listStyle } = styles;
     return (
       <View style={{flex: 1}}>
-        <View style={{flex: 9}}>
+        <View style={{flex: .9}}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
             {
-              this.state.lessonDetails.map(lesson => {
-              return <LessonTitleCard lessonTitle={lesson.title}
-                lessonId={lesson._id}
-                lesson={lesson}
-                navigator={ this.props.navigator }
-                key={lesson._id}
-                user={this.props.user}
-                />
+              this.state.leaderboardList.map((user, index) => {
+                return (
+                  <View style={listStyle} key={index}>
+                      <Text style={profileTitle}>{user.username}</Text>
+                      <Text style={profileText}>{user.totalScore}</Text>
+                  </View>
+                )
               })
             }
           </ScrollView>
         </View>
-        <View style={{flex: 1}}>
+        <View style={{flex: .1}}>
           <Footer
             user={this.props.user}
-            lesson={false}
-            profile={false}
+            lesson={true}
+            profile={true}
             leaderBoard={true}
             navigator={this.props.navigator}
           />
@@ -66,12 +69,22 @@ const styles = {
     paddingBottom: 20,
     backgroundColor: 'white',
   },
-  footerStyle: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0
-  }
+  listStyle: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  profileText: {
+    color: '#1c1c1c',
+    fontSize: 16,
+    padding: 5
+  },
+  profileTitle: {
+    color: '#1c1c1c',
+    fontSize: 16,
+    fontWeight: 'bold',
+    padding: 5
+  },
+  
 }
 
 export default LeaderBoardList;
