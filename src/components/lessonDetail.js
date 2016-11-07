@@ -5,7 +5,7 @@ import { Text, View, Dimensions, TouchableHighlight, ScrollView } from 'react-na
 
 
 const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
-  const { viewStyle, lightTextStyle, cardStyle } = styles;
+  const { viewStyle, lightTextStyle, cardStyle, profileText, profileTitle } = styles;
 
   const navigate = (routeName) => {
     navigator.push({
@@ -33,9 +33,9 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
 
   return (
     <ScrollView contentContainerStyle={viewStyle}>
-      <Text>{lessonTitle}</Text>
-      <Text>Language: {lesson.type}</Text>
-      <Text>{lesson.description}</Text>
+      <Text style={profileTitle}>{lessonTitle}</Text>
+      <Text style={profileTitle}>Language: {lesson.type}</Text>
+      <Text style={profileText}>{lesson.description}</Text>
       <TouchableHighlight style={cardStyle} onPress={navigate.bind(this, 'Lesson')} underlayColor={grey}>
           <Text style={lightTextStyle}>Start Lesson</Text>
       </TouchableHighlight>
@@ -73,6 +73,17 @@ const styles = {
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
+  },
+    profileText: {
+    color: '#1c1c1c',
+    fontSize: 16,
+    padding: 5
+  },
+    profileTitle: {
+    color: '#1c1c1c',
+    fontSize: 16,
+    fontWeight: 'bold',
+    padding: 5
   },
 }
 
