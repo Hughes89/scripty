@@ -19,6 +19,7 @@ import Profile from './src/components/profile';
 import SignUpForm from './src/components/SignUpForm';
 import SignInForm from './src/components/SignInForm';
 import LessonDetail from './src/components/lessonDetail';
+import LeaderboardList from './src/components/LeaderboardList';
 
 
 
@@ -61,6 +62,13 @@ class scripty extends Component {
         <View style={{flex: 1}}>
           <Profile navigator={navigator} {...passProps} />
           <Header navigator={navigator} name={name}/>
+        </View>
+      )
+    } else if (name === 'Leaderboard') {
+      return (
+        <View style={{flex: 1}}>
+          <LeaderboardList navigator={navigator} {...passProps} />
+          <Header navigator={navigator} name={name} />
         </View>
       )
     } else if (name === 'SignUp') {
