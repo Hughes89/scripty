@@ -15,7 +15,7 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
         lessonTitle: lessonTitle,
         user: user
       }
-    })
+    });
   };
 
 
@@ -26,9 +26,9 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
       return true;
     }
     return false;
-  })
+  });
 
-  console.log(lesson)
+  //console.log(lesson)
 
 
   return (

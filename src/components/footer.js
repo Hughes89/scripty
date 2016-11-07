@@ -60,7 +60,7 @@ class Footer extends Component {
       )
     } else {
       return (
-        <TouchableHighlight onPress={this.navigate.bind(this, 'Leaderboard', this.props.user)} style={{...cardStyle, ...whiteCardStyle}} underlayColor={darkCoral} >
+        <TouchableHighlight style={{...cardStyle, ...whiteCardStyle}} underlayColor={darkCoral} >
           <Text style={darkTextStyle}>Leaderboard</Text>
         </TouchableHighlight>
       )
