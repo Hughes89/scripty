@@ -79,15 +79,19 @@ exports.addCompletedLesson = (req, res) => {
   var score = req.body.score;
   var title = req.body.title;
   var questionNumber = req.body.questionNumber
-  User.findOne({username: username}).then(function(user) {
+  User.findOne({username: username})
+  .then(function(user) {
+    //reset user's totalScore
+    user.totalScore = 0;
     user.lessonsCompleted.forEach(function(lesson) {
       if (lesson.lessonId === lessonId) {
         if (lesson.score < score) {
+          //update new, greater score for that lesson
           lesson.score = score;
         }
       }
-    });
-
+      user.totalScore += lesson.score;
+    })
     var found = false;
     for (var i = 0; i < user.lessonsCompleted.length; i++) {
       if (user.lessonsCompleted[i].lessonId === lessonId) {
@@ -98,7 +102,7 @@ exports.addCompletedLesson = (req, res) => {
       user.lessonsCompleted.push({score: score, lessonId: lessonId, title: title, questionNumber: questionNumber});
     }
 
-    User.findOneAndUpdate({username: username}, {lessonsCompleted: user.lessonsCompleted}, function(err) {
+    User.findOneAndUpdate({username: username}, {lessonsCompleted: user.lessonsCompleted, totalScore: user.totalScore}, function(err) {
      if (err) {
        log.error(err);
      }
@@ -107,12 +111,28 @@ exports.addCompletedLesson = (req, res) => {
   });
 };
 
+exports.getAllScores = (req, res) => {
 
+  User.find({}, function(err, results) {
+    var scores = [];
+    results.forEach((user) => {
+      var leaderboardEntry = {
+        username: user.username,
+        totalScore: user.totalScore
+      };
+      scores.push(leaderboardEntry);
+    })
 
+    scores.sort(function(a, b) {
+      if(a.totalScore > b.totalScore) {
+        return -1;
+      }
+      if(a.totalScore < b.totalScore) {
+        return 1;
+      }
+      return 0;
+    })
 
-
-
-
-
-
-
+    res.status(200).send(scores);
+  })
+}
