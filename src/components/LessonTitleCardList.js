@@ -17,12 +17,13 @@ class LessonTitleCardList extends Component {
 
   // Get all of the lesson titles & ids
   getLessonDetails() {
-    const url = 'http://localhost:3011/api/lessons'
+    const url = 'http://localhost:3011/api/lessons/language/' + this.props.type
     fetch(url)
     .then(data => {
       return data.json()
     })
     .then(data => {
+      console.log(data)
       this.setState({'lessonDetails': data})
     })
   }
@@ -50,7 +51,7 @@ class LessonTitleCardList extends Component {
           <Footer
             user={this.props.user}
             lesson={true}
-            profile={false}
+            profile={true}
             leaderBoard={false}
             navigator={this.props.navigator}
           />

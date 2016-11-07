@@ -55,7 +55,7 @@ class SignInForm extends Component {
       .then(response => response.json())
       .then(response => {
           console.log(response)
-          self.navigate('LessonList', response);
+          self.navigate('Languages', response);
       })
       .catch(err => {
         this.setState({
@@ -71,9 +71,9 @@ class SignInForm extends Component {
       )
     }
   }
-  
+
   render() {
-    const { viewStyle, cardStyle, textStyle, pinkCardStyle, 
+    const { viewStyle, cardStyle, textStyle, pinkCardStyle,
       whiteCardStyle, darkTextStyle, lightTextStyle, imageStyle, imageViewStyle,
       textInputStyle } = styles;
     return (
@@ -87,7 +87,7 @@ class SignInForm extends Component {
           </View>
           <Text style={darkTextStyle}>Log In</Text>
           <View>
-            <TextInput 
+            <TextInput
               style={textInputStyle}
               placeholder={"username"}
               autoCapitalize={'none'}
@@ -95,7 +95,7 @@ class SignInForm extends Component {
               enablesReturnKeyAutomatically={true}
               onChangeText={(username) => this.setUsername(username)}
             />
-            <TextInput 
+            <TextInput
               style={textInputStyle}
               placeholder={"password"}
               autoCapitalize={'none'}
