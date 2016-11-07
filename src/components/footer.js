@@ -6,7 +6,7 @@ class Footer extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   navigate(routeName, userData) {
       this.props.navigator.push({
         name:routeName,
@@ -37,7 +37,7 @@ class Footer extends Component {
     const {  lightTextStyle, pinkCardStyle, whiteCardStyle, cardStyle, darkTextStyle } = styles;
     if (this.props.profile) {
       return (
-        <TouchableHighlight onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
+        <TouchableHighlight onPress={this.navigate.bind(this, 'Languages', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
           <Text style={lightTextStyle}>Home</Text>
         </TouchableHighlight>
       )
@@ -46,7 +46,7 @@ class Footer extends Component {
         <TouchableHighlight style={{...cardStyle, ...whiteCardStyle}} underlayColor={darkCoral} >
           <Text style={darkTextStyle}>Home</Text>
         </TouchableHighlight>
-      )      
+      )
     }
   }
 
@@ -110,7 +110,7 @@ const styles = {
   smallLightText: {
     color: 'white',
     fontSize: 15,
-    fontWeight: 'bold',    
+    fontWeight: 'bold',
   },
   darkTextStyle: {
     color: coral,
