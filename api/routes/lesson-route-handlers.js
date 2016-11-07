@@ -19,6 +19,18 @@ exports.getAllLessons = (req, res) => {
   });
 };
 
+exports.getAllLessonsByType = (req, res) => {
+  const type = req.params.type;
+
+  Lesson.find({type: type}, (err, lessons) => {
+    if (err) {
+      send500(res, 'Error retrieving content.', err);
+      return;
+    }
+    res.status(200).send(lessons);
+  });
+};
+
 exports.getLessonAndContentsById = (req, res) => {
   const id = req.params.id;
   const result = {};
@@ -40,11 +52,8 @@ exports.getLessonAndContentsById = (req, res) => {
   });
 };
 
-// TODO(Mitch): Needs testing.
 exports.createLesson = (req, res) => {
   const {title, description, type} = req.body;
-
-  // Check intergrity of lesson content
 
   new Lesson({title, description, type})
     .save().then((lesson) => {
