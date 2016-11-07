@@ -79,13 +79,18 @@ exports.addCompletedLesson = (req, res) => {
   var score = req.body.score;
   var title = req.body.title;
   var questionNumber = req.body.questionNumber
-  User.findOne({username: username}).then(function(user) {
+  User.findOne({username: username})
+  .then(function(user) {
+    //reset user's totalScore
+    user.totalScore = 0;
     user.lessonsCompleted.forEach(function(lesson) {
       if (lesson.lessonId === lessonId) {
         if (lesson.score < score) {
+          //update new, greater score for that lesson
           lesson.score = score;
         }
       }
+      user.totalScore = lesson.score;
     });
 
     var found = false;
