@@ -4,7 +4,8 @@ import { Text, View, Image, Dimensions, StatusBar, TouchableHighlight } from 're
 const renderBackButton = (name, navigator) => {
   if(name === "Profile"){
     return <TouchableHighlight underlayColor="#FA848A" onPress={navigator.pop} style={{flex: 2, height: 20}}><Text style={{color: "white", left: 20}}>Back</Text></TouchableHighlight>
-  } else {
+  }
+  else {
     return <TouchableHighlight style={{flex: 2}}><Text></Text></TouchableHighlight>
   }
 }

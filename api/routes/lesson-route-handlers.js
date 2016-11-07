@@ -42,7 +42,7 @@ exports.getLessonAndContentsById = (req, res) => {
 
 // TODO(Mitch): Needs testing.
 exports.createLesson = (req, res) => {
-  const {title} = req.body;
+  const {title, description, type} = req.body;
 
   // Check intergrity of lesson content
 
