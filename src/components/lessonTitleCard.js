@@ -4,16 +4,17 @@ import { Text, View, Dimensions, TouchableHighlight, ListView } from 'react-nati
 
 
 
-const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user }) => {
+const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
   const { buttonStyle, viewStyle, textStyle, circleStyle, greenCircle, yellowCircle, blueCircle, percentageStyle, hide } = styles;
 
-  const navigate = (routeName, id) => {
+  const navigate = (routeName) => {
     navigator.push({
       name:routeName,
       passProps: {
-        id: id,
+        lessonId: lessonId,
         lessonTitle: lessonTitle,
-        user: user
+        user: user,
+        lesson: lesson
       }
     })
   };
@@ -42,7 +43,7 @@ const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user }) => {
   }
 
   return (
-    <TouchableHighlight onPress={navigate.bind(this, 'Lesson', lessonId, )} underlayColor={grey} style={buttonStyle}>
+    <TouchableHighlight onPress={navigate.bind(this, 'LessonDetail')} underlayColor={grey} style={buttonStyle}>
       <View style={viewStyle}>
         <View style={circle}><Text style={percentageStyle}>{totalScore}</Text></View>
         <Text style={textStyle}>{lessonTitle}</Text>

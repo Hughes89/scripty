@@ -37,6 +37,7 @@ class LessonTitleCardList extends Component {
               this.state.lessonDetails.map(lesson => {
               return <LessonTitleCard lessonTitle={lesson.title}
                 lessonId={lesson._id}
+                lesson={lesson}
                 navigator={ this.props.navigator }
                 key={lesson._id}
                 user={this.props.user}
