@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, Dimensions, StatusBar, TouchableHighlight } from 'react-native';
 
 const renderBackButton = (name, navigator) => {
-  if(name === "Profile"){
+  if(name === "Profile" || name === "LessonDetail"){
     return <TouchableHighlight underlayColor="#FA848A" onPress={navigator.pop} style={{flex: 2, height: 20}}><Text style={{color: "white", left: 20}}>Back</Text></TouchableHighlight>
   }
   else {

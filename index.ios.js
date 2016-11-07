@@ -18,6 +18,7 @@ import LessonComplete from './src/components/LessonComplete';
 import Profile from './src/components/profile';
 import SignUpForm from './src/components/SignUpForm';
 import SignInForm from './src/components/SignInForm';
+import LessonDetail from './src/components/lessonDetail';
 
 
 
@@ -41,7 +42,14 @@ class scripty extends Component {
           <Header navigator={navigator} name={name}/>
         </View>
       )
-    } else if (name === 'LessonComplete') {
+    } else if (name === 'LessonDetail'){
+      return (
+        <View style={{flex: 1}}>
+          <LessonDetail navigator={navigator} {...passProps} />
+          <Header navigator={navigator} name={name}/>
+        </View>
+      )
+    }else if (name === 'LessonComplete') {
       return (
         <View style={{flex: 1}}>
           <LessonComplete navigator={navigator} {...passProps} />

@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-import { Text, View, Dimensions, TouchableHighlight, ListView } from 'react-native';
+import { Text, View, Dimensions, TouchableHighlight, ScrollView } from 'react-native';
 
 
 
 
-const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
+const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
   const { buttonStyle, viewStyle, textStyle, circleStyle, greenCircle, yellowCircle, blueCircle, percentageStyle, hide } = styles;
 
   const navigate = (routeName) => {
     navigator.push({
       name:routeName,
       passProps: {
-        lessonId: lessonId,
+        id: lessonId,
         lessonTitle: lessonTitle,
-        user: user,
-        lesson: lesson
+        user: user
       }
     })
   };
-  console.log('why?', lessonId)
+
+  console.log('please', lessonId)
 
   var lessonInfo;
   const completed = user.lessonsCompleted.some(lesson => {
@@ -44,12 +44,14 @@ const LessonTitleCard = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
   }
 
   return (
-    <TouchableHighlight onPress={navigate.bind(this, 'LessonDetail')} underlayColor={grey} style={buttonStyle}>
-      <View style={viewStyle}>
-        <View style={circle}><Text style={percentageStyle}>{totalScore}</Text></View>
-        <Text style={textStyle}>{lessonTitle}</Text>
-      </View>
-    </TouchableHighlight>
+    <ScrollView>
+      <Text>{lessonTitle}</Text>
+      <Text>Language: {lesson.type}</Text>
+      <Text>{lesson.description}</Text>
+      <TouchableHighlight onPress={navigate.bind(this, 'Lesson')} underlayColor={grey} style={buttonStyle}>
+          <Text style={textStyle}>Start Lesson</Text>
+      </TouchableHighlight>
+    </ScrollView>
   )
 };
 
@@ -104,7 +106,7 @@ const styles = {
 }
 
 
-export default LessonTitleCard;
+export default lessonDetail;
 
 
 
