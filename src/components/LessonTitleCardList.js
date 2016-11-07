@@ -51,6 +51,7 @@ class LessonTitleCardList extends Component {
             user={this.props.user}
             lesson={true}
             profile={false}
+            leaderBoard={false}
             navigator={this.props.navigator}
           />
         </View>

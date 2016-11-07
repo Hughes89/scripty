@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, ScrollView, TouchableHighlight } from 'react-native';
 import LessonTitleCard from './lessonTitleCard';
-import Footer from './footer'
+import Footer from './footer';
 
 class LessonTitleCardList extends Component {
 
@@ -28,7 +28,7 @@ class LessonTitleCardList extends Component {
     const { viewStyle, footerStyle, profileText, profileTitle, cardStyle, pinkCardStyle, lightTextStyle } = styles;
     return (
       <View style={{flex: 1}}>
-        <View style={{flex: 1}}>
+        <View style={{flex: .9}}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle} >
             <Text style={profileTitle}>Username </Text><Text style={profileText}>{this.props.user.username}</Text>
             <Text style={profileTitle}>Score </Text><Text style={profileText}>{this.calculate()}</Text>
@@ -42,6 +42,15 @@ class LessonTitleCardList extends Component {
               <Text style={lightTextStyle}>Log Out</Text>
             </TouchableHighlight>
           </ScrollView>
+        </View>
+        <View style={{flex: .1}}>
+          <Footer
+            user={this.props.user}
+            lesson={false}
+            profile={true}
+            leaderBoard={false}
+            navigator={this.props.navigator}
+          />
         </View>
       </View>
     )

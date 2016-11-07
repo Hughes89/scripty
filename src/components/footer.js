@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, TouchableHighlight } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Footer extends Component {
   constructor(props) {
@@ -16,34 +17,69 @@ class Footer extends Component {
   }
 
   renderProfileFooter() {
-    const {  lightTextStyle, pinkCardStyle, cardStyle } = styles;
+    const {  lightTextStyle, pinkCardStyle, whiteCardStyle, cardStyle, darkTextStyle } = styles;
     if (this.props.lesson) {
       return (
         <TouchableHighlight onPress={this.navigate.bind(this, 'Profile', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
           <Text style={lightTextStyle}>Profile</Text>
         </TouchableHighlight>
       )
+    } else {
+      return (
+        <TouchableHighlight style={{...cardStyle, ...whiteCardStyle}} underlayColor={darkCoral} >
+          <Text style={darkTextStyle}>Profile</Text>
+        </TouchableHighlight>
+      )
     }
   }
 
   renderLessonFooter() {
-    const {  lightTextStyle, pinkCardStyle, cardStyle } = styles;
+    const {  lightTextStyle, pinkCardStyle, whiteCardStyle, cardStyle, darkTextStyle } = styles;
     if (this.props.profile) {
       return (
         <TouchableHighlight onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
-          <Text style={lightTextStyle}>Lessons</Text>
+          <Text style={lightTextStyle}>Home</Text>
+        </TouchableHighlight>
+      )
+    } else {
+      return (
+        <TouchableHighlight style={{...cardStyle, ...whiteCardStyle}} underlayColor={darkCoral} >
+          <Text style={darkTextStyle}>Home</Text>
+        </TouchableHighlight>
+      )      
+    }
+  }
+
+    renderLeaderboardFooter() {
+    const {  lightTextStyle, pinkCardStyle, whiteCardStyle, cardStyle, darkTextStyle } = styles;
+    if (!this.props.leaderBoard) {
+      return (
+        <TouchableHighlight onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={{...cardStyle, ...pinkCardStyle}} underlayColor={darkCoral} >
+          <Text style={lightTextStyle}>Leaderboard</Text>
+        </TouchableHighlight>
+      )
+    } else {
+      return (
+        <TouchableHighlight onPress={this.navigate.bind(this, 'LessonList', this.props.user)} style={{...cardStyle, ...whiteCardStyle}} underlayColor={darkCoral} >
+          <Text style={darkTextStyle}>Leaderboard</Text>
         </TouchableHighlight>
       )
     }
-
   }
 
   render() {
     const {  footerStyle, lightTextStyle } = styles;
     return (
     <View style={footerStyle}>
-    {this.renderLessonFooter()}
-    {this.renderProfileFooter()}
+      <View style={{flex: .2}}>
+        {this.renderLessonFooter()}
+      </View>
+      <View style={{flex: .3}}>
+       {this.renderLeaderboardFooter()}
+      </View>
+      <View style={{flex: .2}}>
+        {this.renderProfileFooter()}
+      </View>
     </View>
     )
   }
@@ -58,9 +94,9 @@ const styles = {
     flex:1,
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'center',
+    //justifyContent:'center',
     backgroundColor: '#FA848A',
-    height: 60,
+    height: 50,
     position: 'absolute',
     left: 0,
     right: 0,
@@ -68,22 +104,33 @@ const styles = {
   },
   lightTextStyle: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  smallLightText: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',    
+  },
+  darkTextStyle: {
+    color: coral,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   cardStyle: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'center',
-    height: 40,
-    width: Dimensions.get("window").width - 40,
-    borderRadius: 5,
+    height: 50,
+    borderRadius: 0,
     position: 'relative',
-
+    justifyContent:'center'
   },
   pinkCardStyle: {
     backgroundColor: coral,
   },
+  whiteCardStyle: {
+    backgroundColor: "#FFFFFF",
+  }
 }
 
 export default Footer;
