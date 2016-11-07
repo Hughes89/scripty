@@ -51,7 +51,7 @@ class LessonTitleCardList extends Component {
           <Footer
             user={this.props.user}
             lesson={true}
-            profile={false}
+            profile={true}
             leaderBoard={false}
             navigator={this.props.navigator}
           />
