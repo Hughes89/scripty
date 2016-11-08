@@ -47,6 +47,7 @@ class Lesson extends Component {
         lessonTitle: this.props.lessonTitle,
         numberCorrect: this.state.numberCorrect,
         numberIncorrect: this.state.numberIncorrect,
+        lessonType: this.props.lessonType
       }
     });
   }

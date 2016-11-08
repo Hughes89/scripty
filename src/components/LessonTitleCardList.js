@@ -31,7 +31,7 @@ class LessonTitleCardList extends Component {
   render() {
     const { viewStyle, footerStyle } = styles;
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: 'white'}}>
         <View style={{flex: 9}}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
             {

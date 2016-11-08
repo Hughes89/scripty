@@ -66,7 +66,7 @@ const {width, height} = Dimensions.get('window');
 const styles = {
   viewStyle: {
     alignItems: 'center',
-    paddingTop: 60,
+    paddingTop: 90,
     paddingBottom: 20,
     backgroundColor: 'white',
   },
@@ -90,6 +90,7 @@ const styles = {
     width: Dimensions.get("window").width - 40,
     borderRadius: 5,
     position: 'relative',
+    marginTop: 50
 
   },
   pinkCardStyle: {

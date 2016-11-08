@@ -13,7 +13,8 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
       passProps: {
         id: lessonId,
         lessonTitle: lessonTitle,
-        user: user
+        user: user,
+        lessonType: lesson.type
       }
     });
   };
@@ -32,10 +33,10 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
 
 
   return (
-    <ScrollView contentContainerStyle={viewStyle}>
+    <ScrollView style={{backgroundColor: 'white'}} contentContainerStyle={viewStyle}>
       <Text style={profileTitle}>{lessonTitle}</Text>
-      <Text style={profileTitle}>Language: {lesson.type}</Text>
-      <Text style={profileText}>{lesson.description}</Text>
+      <Text style={profileText}>Language: {lesson.type}</Text>
+      <Text style={profileText}>Description: {lesson.description}</Text>
       <TouchableHighlight style={cardStyle} onPress={navigate.bind(this, 'Lesson')} underlayColor={grey}>
           <Text style={lightTextStyle}>Start Lesson</Text>
       </TouchableHighlight>
@@ -51,8 +52,8 @@ const {width, height} = Dimensions.get('window');
 
 const styles = {
   viewStyle: {
-    alignItems: 'center',
-    paddingTop: 60,
+    marginLeft: 20,
+    paddingTop: 100,
     paddingBottom: 20,
     backgroundColor: 'white',
   },
@@ -65,7 +66,7 @@ const styles = {
 
     height: 60,
     width: Dimensions.get("window").width - 40,
-    marginTop: 20,
+    marginTop: 50,
 
     borderRadius: 5,
   },
@@ -76,12 +77,12 @@ const styles = {
   },
     profileText: {
     color: '#1c1c1c',
-    fontSize: 16,
+    fontSize: 18,
     padding: 5
   },
     profileTitle: {
     color: '#1c1c1c',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     padding: 5
   },
