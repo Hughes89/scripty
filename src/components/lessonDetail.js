@@ -13,7 +13,8 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
       passProps: {
         id: lessonId,
         lessonTitle: lessonTitle,
-        user: user
+        user: user,
+        lessonType: lesson.type
       }
     });
   };

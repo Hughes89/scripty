@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, TouchableHighlight } from 'react-native';
 
-const LessonComplete = ({ navigator, numberCorrect, numberIncorrect, user, lessonId, lessonTitle }) => {
+const LessonComplete = ({ navigator, numberCorrect, numberIncorrect, user, lessonId, lessonTitle, lessonType }) => {
   const { viewStyle, cardStyle, textStyle, bigTextStyle, greenText, redText, subHead } = styles;
 
   const navigate = (routeName) => {
     navigator.push({
       name:routeName,
       passProps: {
-      user: user
+      user: user,
+      type: lessonType
       }
     });
   };
