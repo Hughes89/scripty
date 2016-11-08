@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, Dimensions, TouchableHighlight, ScrollView } from 'react-native';
+import { Text, View, Dimensions, TouchableHighlight, ScrollView, Image } from 'react-native';
 import Footer from './footer'
 
 const languages = ({ user, navigator }) => {
-  const { viewStyle } = styles;
+  const { viewStyle, cardStyle, imageStyle } = styles;
 
   const navigate = (routeName, type) => {
     console.log(navigator)
@@ -18,16 +18,29 @@ const languages = ({ user, navigator }) => {
 
   return (
     <View style={{flex: 1}}>
-      <View style={{marginTop: 30, flex: 9, alignItems: 'center'}}>
-        <View style={{flex: 4, flexDirection: 'row', alignItems: 'center'}}>
-          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'JavaScript')} style={{flex: 1}}><Text>JavaScript</Text></TouchableHighlight>
-          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'Ruby')} style={{flex: 1}}><Text>Ruby</Text></TouchableHighlight>
-          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'Python')} style={{flex: 1}}><Text>Python</Text></TouchableHighlight>
+      <View style={{marginTop: 30, flex: 3, alignItems: 'center'}}>
+      <View><Text>Languages:</Text></View>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'JavaScript')} style={cardStyle}>
+          <Image source={require('../../lib/images/JS.png')} style={imageStyle} />
+          </TouchableHighlight>
+          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'Ruby')} style={cardStyle}>
+          <Image source={require('../../lib/images/Ruby.png')} style={imageStyle} />
+          </TouchableHighlight>
+          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'Python')} style={cardStyle}>
+          <Image source={require('../../lib/images/Python.png')} style={imageStyle} />
+          </TouchableHighlight>
         </View>
-        <View style={{flex: 4, flexDirection: 'row', alignItems: 'center'}}>
-          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'C')} style={{flex: 1}}><Text>C</Text></TouchableHighlight>
-          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'PHP')} style={{flex: 1}}><Text>PHP</Text></TouchableHighlight>
-          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'Java')} style={{flex: 1}}><Text>Java</Text></TouchableHighlight>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'C')} style={cardStyle}>
+          <Image source={require('../../lib/images/C.png')} style={imageStyle} />
+          </TouchableHighlight>
+          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'PHP')} style={cardStyle}>
+          <Image source={require('../../lib/images/PHP.png')} style={imageStyle} />
+          </TouchableHighlight>
+          <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'Java')} style={cardStyle}>
+          <Image source={require('../../lib/images/Java.png')} style={imageStyle} />
+          </TouchableHighlight>
         </View>
       </View>
       <View style={{flex: 1}}>
@@ -47,8 +60,21 @@ const styles = {
   viewStyle: {
     alignItems: 'center',
     paddingTop: 60,
-    paddingBottom: 20,
     backgroundColor: 'white',
+  },
+  cardStyle: {
+    flex: .2,
+    alignItems: 'center',
+    height: 10,
+    borderRadius: 0,
+    position: 'relative',
+    justifyContent:'center'
+  },
+  imageStyle: {
+    backgroundColor: '#FA848A',
+    opacity: .80,
+    height: 150,
+    width: 130
   }
 }
 
