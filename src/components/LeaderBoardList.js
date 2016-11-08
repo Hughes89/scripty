@@ -36,12 +36,12 @@ class LeaderBoardList extends Component {
       <View style={{flex: 1}}>
         <View style={{flex: .9}}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
+            <Text style={profileTitle}>High Scores</Text>
             {
               this.state.leaderboardList.map((user, index) => {
                 return (
                   <View style={listStyle} key={index}>
-                      <Text style={profileTitle}>{user.username}</Text>
-                      <Text style={profileText}>{user.totalScore}</Text>
+                      <Text style={profileText}>{user.username}: {user.totalScore}pts</Text>
                   </View>
                 )
               })
@@ -65,7 +65,7 @@ class LeaderBoardList extends Component {
 const styles = {
   viewStyle: {
     alignItems: 'center',
-    paddingTop: 60,
+    paddingTop: 90,
     paddingBottom: 20,
     backgroundColor: 'white',
   },
@@ -75,16 +75,16 @@ const styles = {
   },
   profileText: {
     color: '#1c1c1c',
-    fontSize: 16,
+    fontSize: 18,
     padding: 5
   },
   profileTitle: {
     color: '#1c1c1c',
-    fontSize: 16,
+    fontSize: 22,
     fontWeight: 'bold',
     padding: 5
   },
-  
+
 }
 
 export default LeaderBoardList;
