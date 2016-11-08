@@ -3,7 +3,7 @@ import { Text, View, Dimensions, TouchableHighlight, ScrollView, Image } from 'r
 import Footer from './footer'
 
 const languages = ({ user, navigator }) => {
-  const { viewStyle, cardStyle, imageStyle } = styles;
+  const { viewStyle, cardStyle, imageStyle, darkTextStyle } = styles;
 
   const navigate = (routeName, type) => {
     console.log(navigator)
@@ -18,8 +18,8 @@ const languages = ({ user, navigator }) => {
 
   return (
     <View style={{flex: 1}}>
-      <View style={{marginTop: 30, flex: 3, alignItems: 'center'}}>
-      <View><Text>Languages:</Text></View>
+      <View style={{marginTop: 90, flex: 3, alignItems: 'center'}}>
+      <View><Text style={darkTextStyle} >Select a Language</Text></View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
           <TouchableHighlight onPress={navigate.bind(this, "LessonList", 'JavaScript')} style={cardStyle}>
           <Image source={require('../../lib/images/JS.png')} style={imageStyle} />
@@ -75,7 +75,12 @@ const styles = {
     opacity: .80,
     height: 150,
     width: 130
-  }
+  },
+    darkTextStyle: {
+    color: '#FA848A',
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
 }
 
 export default languages;
