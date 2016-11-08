@@ -33,7 +33,7 @@ const lessonDetail = ({ lessonTitle, navigator, lessonId, user, lesson}) => {
 
 
   return (
-    <ScrollView contentContainerStyle={viewStyle}>
+    <ScrollView style={{backgroundColor: 'white'}} contentContainerStyle={viewStyle}>
       <Text style={profileTitle}>{lessonTitle}</Text>
       <Text style={profileText}>Language: {lesson.type}</Text>
       <Text style={profileText}>Description: {lesson.description}</Text>

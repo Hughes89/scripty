@@ -33,7 +33,7 @@ class LeaderBoardList extends Component {
   render() {
     const { viewStyle, profileText, profileTitle, listStyle } = styles;
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: 'white'}}>
         <View style={{flex: .9}}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={viewStyle}>
             <Text style={profileTitle}>High Scores</Text>

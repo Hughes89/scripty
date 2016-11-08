@@ -17,7 +17,7 @@ const languages = ({ user, navigator }) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{marginTop: 90, flex: 3, alignItems: 'center'}}>
       <View><Text style={darkTextStyle} >Select a Language</Text></View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
